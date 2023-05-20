@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    command: python main.py
+    ports:
+      - "8001:8001"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0324B0324l!
+      - POSTGRES_DB=postgres
+      - POSTGRES_HOST=postgres
+
+  bot:
+    build: .
+    command: python tg_bot.py
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0324B0324l!
+      - POSTGRES_DB=postgres
+      - POSTGRES_HOST=postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0324B0324l!
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    hostname: postgres
